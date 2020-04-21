@@ -2,10 +2,10 @@ Object.assign(window, {
 	t: 0.0,
 	dt: 0.005,
 
-	dimRate: 10,
-	strokeColor: 'lightgreen',
+	dimRate: 0.1,	//	depends on colorMode range parameter
 
 	setup: () => {
+	  colorMode(HSB, 1.0);
 	  frameRate(30);
 
 	  createCanvas(windowWidth, windowHeight);
@@ -18,7 +18,7 @@ Object.assign(window, {
 		$.transform();
 	  $.dim();
 
-		stroke(strokeColor);
+		stroke(t, 1.0, 1.0);
 		const radius = 2.0 * Math.sin( 2.0 * Math.PI * t );
 		ellipse(0.0, 0.0, radius, radius);
 
