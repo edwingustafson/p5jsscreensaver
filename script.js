@@ -31,9 +31,7 @@ Object.assign(window, {
 	},
 
 	$: {
-		dim: () => {
-			background(0, dimRate);
-		},
+		dim: () => background(0, dimRate),
 
 		random: (limit) => Math.random() * limit,
 
