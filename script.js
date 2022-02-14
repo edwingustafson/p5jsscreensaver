@@ -34,7 +34,7 @@ function hexagon(x, y, r) {
         fill(8.0 + random(64.0));
     }
 
-    beginShape();
+	beginShape();
 
     for (let a = 0.0; a <= TWO_PI; a += angle) {
         const r0 = 0.95 * r;

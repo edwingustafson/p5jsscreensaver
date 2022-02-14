@@ -1,10 +1,9 @@
-module.exports = {
+{
     "env": {
         "browser": true
     },
     "extends": "eslint:recommended",
-    "globals": {
-    },
+    "globals": {},
     "parserOptions": {
         "ecmaVersion": 6
     },
@@ -92,7 +91,7 @@ module.exports = {
         "no-caller": "error",
         "no-catch-shadow": "off",
         "no-confusing-arrow": "error",
-        "no-console":"off",
+        "no-console": "off",
         "no-continue": "off",
         "no-div-regex": "error",
         "no-duplicate-imports": "error",
@@ -172,6 +171,7 @@ module.exports = {
         "no-ternary": "off",
         "no-throw-literal": "off",
         "no-trailing-spaces": "off",
+        "no-undef": "off",
         "no-undef-init": "error",
         "no-undefined": "off",
         "no-underscore-dangle": "off",
@@ -255,4 +255,4 @@ module.exports = {
         "yield-star-spacing": "error",
         "yoda": "off"
     }
-};
+}
