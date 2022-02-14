@@ -1,61 +1,49 @@
-Object.assign(window, {
-  t: 0.0,
-  dt: 0.005,
-
-  dimRate: 0.1, //	depends on colorMode range parameter
-
-  setup: () => {
-    colorMode(HSB, 1.0);
-    frameRate(30);
-
+function setup() {
     createCanvas(windowWidth, windowHeight);
-    ellipseMode(CENTER);
+    background(0);
 
-    $.reset();
-  },
+    noStroke();
+    draw();
+    frameRate(1.0 / 60.0 / 60.0);
+}
 
-  draw: () => {
-    $.transform();
-    $.dim();
+function draw() {
+    background(8.0, 16.0, 0.0);
 
-    stroke(t, 1.0, 1.0);
-    const radius = 2.0 * Math.sin(2.0 * Math.PI * t);
-    ellipse(0.0, 0.0, radius, radius);
+    //  Point-topped hexagonal grid
 
-    t = (t + dt) % 1.0;
-  },
+    const dx = 30.0;
+    const w = dx;
+    const r = w / Math.sqrt(3.0) + 0.0;
+    const h = r;
+    const dy = 3.0 * r;
 
-  windowResized: () => {
-    resizeCanvas(windowWidth, windowHeight);
-    $.reset();
-  },
+    for (let x = 0.0; x < width + r; x += dx)
+        for (let y = 0.0; y < height + r; y += dy) {
+            hexagon(x, y, r);
+            hexagon(x + 0.5 * w, y + 1.5 * h, r);
+        }
+}
 
-  $: {
-    dim: () => {
-      background(0, dimRate);
-    },
+function hexagon(x, y, r) {
+    const angle = TWO_PI / 6.0;
 
-    random: (limit) => {
-      return Math.random() * limit;
-    },
+    if( random() > 0.9975 ) {
+        fill( 32.0, 64 - random(32.0), 32.0);
+    } else {
+        fill(8.0 + random(64.0));
+    }
 
-    reset: () => {
-      translate(windowWidth / 2, windowHeight / 2);
-      rotate(radians(-90));
-      scale(0.9 * Math.min(windowWidth / 2, windowHeight / 2));
+    beginShape();
 
-      background(0);
+    for (let a = 0.0; a <= TWO_PI; a += angle) {
+        const r0 = 0.95 * r;
 
-      noFill();
-      strokeWeight(0.0025);
+        const sa = a + angle / 2.0;
+        const sx = x + Math.cos(sa) * r0;
+        const sy = y + Math.sin(sa) * r0;
+        vertex(sx, sy);
+    }
 
-      t = 0.0;
-    },
-
-    transform: () => {
-      translate(windowWidth / 2, windowHeight / 2);
-      rotate(radians(-90));
-      scale(0.9 * Math.min(windowWidth / 2, windowHeight / 2));
-    },
-  },
-});
+    endShape(CLOSE);
+}
