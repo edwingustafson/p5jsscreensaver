@@ -12,7 +12,7 @@ function draw() {
 
     //  Point-topped hexagonal grid
 
-    const dx = 30.0;
+    const dx = 15.0;
     const w = dx;
     const r = w / Math.sqrt(3.0) + 0.0;
     const h = r;
@@ -23,15 +23,15 @@ function draw() {
             hexagon(x, y, r);
             hexagon(x + 0.5 * w, y + 1.5 * h, r);
         }
-}
+} 
 
 function hexagon(x, y, r) {
     const angle = TWO_PI / 6.0;
 
     if( random() > 0.9975 ) {
-        fill( 32.0, 64 - random(32.0), 32.0);
+        fill(32.0, 64 - random(32.0), 32.0);
     } else {
-        fill(8.0 + random(64.0));
+        fill(32.0 + random(64.0));
     }
 
 	beginShape();
